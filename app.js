@@ -62,3 +62,8 @@ function viewHistory() {
   `);
 }
 
+function navigate(page) {
+  if (page === 'home') viewHome();
+  else if (page === 'players') viewPlayers();
+  else if (page === 'history') viewHistory();
+}

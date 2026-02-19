@@ -28,7 +28,7 @@ function renderLayout(content) {
    renderLayout(`
      <section class="card">
        <h2>Welcome to T1 Fan Site</h2>
-      <img class="feature-image" src="./images/home.jpeg" alt="T1 2026 roster">
+      <img class="feature-image" src="images/home.jpeg" alt="T1 2026 roster">
        <p>T1 is one of the most iconic esports organizations in League of Legends history.</p>
        <p>Founded in South Korea, T1 has dominated international competition and produced legendary players like Faker.</p>
      </section>

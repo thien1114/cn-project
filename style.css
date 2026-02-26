@@ -1194,3 +1194,154 @@ button:hover, .btn:hover {
     display: none;
   }
 }
+/* ── NETWORKING PAGE ── */
+.network-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 30px 100px;
+}
+
+.network-section .section-title {
+  margin-bottom: 8px;
+}
+
+.network-section .section-intro {
+  color: var(--text-muted);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 60px;
+}
+
+.net-block {
+  margin-bottom: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid var(--border);
+}
+
+.net-block:last-child {
+  border-bottom: none;
+}
+
+.net-block h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  letter-spacing: 1px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.net-block p {
+  color: var(--text-muted);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.net-block p strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.net-block ol {
+  color: var(--text-muted);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 2;
+  padding-left: 22px;
+  margin-bottom: 16px;
+}
+
+.net-block ol li {
+  margin-bottom: 4px;
+}
+
+.net-block h4 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--accent);
+  font-weight: 500;
+  margin: 28px 0 14px;
+}
+
+code {
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text);
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 13px;
+  font-family: 'Courier New', monospace;
+}
+
+pre {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 20px 24px;
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin: 16px 0;
+}
+
+pre .label {
+  color: var(--accent);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.net-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+}
+
+.net-table thead tr {
+  border-bottom: 2px solid var(--accent);
+}
+
+.net-table th {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.net-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+.net-table td code {
+  background: rgba(255,255,255,0.05);
+}
+
+.net-table tr:last-child td {
+  border-bottom: none;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+}
+
+.status-200 { background: rgba(0, 200, 100, 0.12); color: #00c864; }
+.status-301 { background: rgba(255, 180, 0, 0.12); color: #ffb400; }
+.status-304 { background: rgba(100, 160, 255, 0.12); color: #64a0ff; }
+.status-404 { background: rgba(225, 6, 0, 0.12); color: var(--accent); }

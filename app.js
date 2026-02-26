@@ -88,7 +88,8 @@ function renderLayout(content, activePage) {
           <a href="#" data-page="home" class="${activePage === 'home' ? 'active' : ''}">Home</a>
           <a href="#" data-page="players" class="${activePage === 'players' ? 'active' : ''}">Players</a>
           <a href="#" data-page="history" class="${activePage === 'history' ? 'active' : ''}">History</a>
-        </nav>
+          <a href="#" data-page="network" class="${activePage === 'network' ? 'active' : ''}">Network</a>
+          </nav>
       </div>
     </header>
     <main class="blurred">${content}</main>
@@ -425,12 +426,96 @@ function viewHistory() {
   `, 'history');
 }
 
+function viewNetwork() {
+  renderLayout(`
+    <section class="network-section">
+      <div class="reveal">
+        <div class="section-label">Deployment</div>
+        <h2 class="section-title">Networking Concepts</h2>
+        <p class="section-intro">
+          This page explains how core networking technologies work in the context of this T1 Fan Site,
+          hosted on GitHub Pages. These are not textbook definitions — each concept is tied directly to how this site is deployed and accessed.
+        </p>
+      </div>
 
+      <!-- DNS -->
+      <div class="net-block reveal">
+        <div class="section-label">01 — DNS</div>
+        <h3>Domain Name System</h3>
+        <p>
+          When you visit <strong>thien1114.github.io/cn-project</strong>, your browser has no idea where that site actually lives on the internet.
+          It only understands IP addresses — not human-readable names. DNS (Domain Name System) bridges that gap, acting as the internet's phone book
+          by translating the domain into a real IP address.
+        </p>
+        <p>Here's exactly what happens when someone loads this site:</p>
+        <ol>
+          <li>You type <code>thien1114.github.io/cn-project</code> into your browser.</li>
+          <li>Your browser checks its local cache — if it's been visited recently, it skips the lookup.</li>
+          <li>If not cached, it queries a DNS resolver (e.g. your ISP's, or Google's <code>8.8.8.8</code>).</li>
+          <li>The resolver finds GitHub's A records and returns one of GitHub Pages' IP addresses.</li>
+          <li>Your browser connects to that IP and the site loads.</li>
+        </ol>
+        <h4>DNS Lookup — Live Example</h4>
+        <img src="images/dig.png" alt="DNS dig output for thien1114.github.io" style="width:100%; border-radius:4px; border: 0px solid var(--border); margin: 16px 0;">
+        <p>
+          The <code>1672</code> value is the TTL (Time To Live) in seconds — it tells resolvers how long to cache this result before checking again.
+          GitHub returns multiple A records so browsers can fall back to another server if one is unavailable.
+        </p>
+      </div>
+
+      <!-- IP Addressing -->
+      <div class="net-block reveal">
+        <div class="section-label">02 — IP Addressing</div>
+        <h3>IPv4 &amp; IPv6 Addresses</h3>
+        <p>
+          GitHub Pages serves this site through a global CDN (Content Delivery Network). The domain resolves to one of several IP addresses
+          depending on your location and network. GitHub supports both <strong>IPv4</strong> and <strong>IPv6</strong>.
+        </p>
+        <img src="images/addresses.png" alt="GitHub Page IP Addresses" style="width:100%; border-radius:4px; border: 0px solid var(--border); margin: 16px 0;">
+        <p>
+          <strong>IPv4</strong> uses 32-bit addresses (e.g. <code>185.199.109.153</code>) and has been the backbone of the internet since the 1980s.
+        </p>
+        <p>
+          <strong>IPv6</strong> uses 128-bit addresses (e.g. <code>2606:50c0:8000::153</code>) and was introduced to handle the global exhaustion of IPv4 addresses.
+        </p>
+        <p>
+          GitHub Pages supports both, so this site is reachable from virtually any device or network, regardless of which protocol it uses.
+        </p>
+      </div>
+
+      <!-- Protocols -->
+      <div class="net-block reveal">
+        <div class="section-label">03 — Protocols</div>
+        <h3>HTTP, HTTPS &amp; TLS</h3>
+        <p>
+          This site is served exclusively over <strong>HTTPS</strong> — HyperText Transfer Protocol Secure.
+          GitHub Pages enforces HTTPS by default and automatically redirects any plain HTTP request to HTTPS.
+          All data transmitted between your browser and GitHub's servers is encrypted using <strong>TLS (Transport Layer Security)</strong>.
+        </p>
+        <p>
+          The SSL/TLS certificate is issued automatically via <strong>Let's Encrypt</strong>, a free and trusted certificate authority.
+          This certificate cryptographically proves you're talking to GitHub's servers and not an imposter — protecting against man-in-the-middle attacks.
+        </p>
+
+        <h4>Real Headers — thien1114.github.io</h4>
+<p>The screenshot below is captured directly from Chrome DevTools on this site. From here, we can notice some important protocols:</p>
+<ul style="color:var(--text-muted); font-size:15px; font-weight:300; line-height:2; padding-left:22px; margin-bottom:16px;">
+  <li><strong style="color:var(--text)">Request URL</strong> — <code>https://thien1114.github.io/cn-project/</code> confirms HTTPS is being used</li>
+  <li><strong style="color:var(--text)">Status Code 304 Not Modified</strong> — the browser already had a cached copy, so GitHub skipped re-sending the file</li>
+  <li><strong style="color:var(--text)">Remote Address 185.199.109.153:443</strong> — port 443 confirms HTTPS; this IP matches GitHub Pages' CDN</li>
+  <li><strong style="color:var(--text)">Cache-Control: max-age=600</strong> — page is cached for 10 minutes</li>
+  <li><strong style="color:var(--text)">Via: 1.1 varnish</strong> — GitHub uses Fastly's CDN (Varnish cache) to serve the site globally</li>
+  <li><strong style="color:var(--text)">:scheme: https</strong> — confirms the request was made over HTTPS/HTTP2</li>
+</ul>
+<img src="images/devtools-headers.png" alt="Chrome DevTools headers for thien1114.github.io" style="width:100%; border-radius:4px; border:1px solid var(--border); margin:16px 0;">
+  `, 'network');
+}
 function navigate(page, push = true) {
   if (push) history.pushState({ page }, '', `#${page}`);
   if (page === 'home') viewHome();
   else if (page === 'players') viewPlayers();
   else if (page === 'history') viewHistory();
+  else if (page === 'network') viewNetwork();
   else viewHome();
 }
 
@@ -444,6 +529,7 @@ window.addEventListener('popstate', (event) => {
     navigate(state.page, false);
   }
 });
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const hash = location.hash.replace('#', '');

@@ -451,15 +451,15 @@ function viewNetwork() {
         <ol>
           <li>You type <code>thien1114.github.io/cn-project</code> into your browser.</li>
           <li>Your browser checks its local cache — if it's been visited recently, it skips the lookup.</li>
-          <li>If not cached, it queries a DNS resolver (e.g. your ISP's, or Google's <code>8.8.8.8</code>).</li>
+          <li>If not cached, it queries a DNS resolver (in this case <code>192.168.1.1</code>) the local home router, which forwards the request to the ISP's upstream resolver..</li>
           <li>The resolver finds GitHub's A records and returns one of GitHub Pages' IP addresses.</li>
           <li>Your browser connects to that IP and the site loads.</li>
         </ol>
         <h4>DNS Lookup — Live Example</h4>
-        <img src="images/dig.png" alt="DNS dig output for thien1114.github.io" style="width:100%; border-radius:4px; border: 0px solid var(--border); margin: 16px 0;">
+        <img src="images/nslookup.png" alt="DNS dig output for thien1114.github.io" style="width:100%; border-radius:4px; border: 0px solid var(--border); margin: 16px 0;">
         <p>
-          The <code>1672</code> value is the TTL (Time To Live) in seconds — it tells resolvers how long to cache this result before checking again.
-          GitHub returns multiple A records so browsers can fall back to another server if one is unavailable.
+          The answer is <b>"non-authoritative"</b> because it came from the local router's cache(<code>192.68.1.1</code>),which forwarded the query to the ISP's upstream resolver — not directly from GitHub's nameserver. Four IP addresses are returned — GitHub Pages uses anycast routing via the Fastly CDN, so the browser connects to whichever server is geographically closest, improving speed and redundancy. DNS queries travel over UDP on port 53.
+          
         </p>
       </div>
 
@@ -501,13 +501,18 @@ function viewNetwork() {
 <p>The screenshot below is captured directly from Chrome DevTools on this site. From here, we can notice some important protocols:</p>
 <ul style="color:var(--text-muted); font-size:15px; font-weight:300; line-height:2; padding-left:22px; margin-bottom:16px;">
   <li><strong style="color:var(--text)">Request URL</strong> — <code>https://thien1114.github.io/cn-project/</code> confirms HTTPS is being used</li>
+  <li><strong style="color:var(--text)">Status Code 200 OK</strong> — the page was delivered successfully on a fresh request</li>
   <li><strong style="color:var(--text)">Status Code 304 Not Modified</strong> — the browser already had a cached copy, so GitHub skipped re-sending the file</li>
   <li><strong style="color:var(--text)">Remote Address 185.199.109.153:443</strong> — port 443 confirms HTTPS; this IP matches GitHub Pages' CDN</li>
   <li><strong style="color:var(--text)">Cache-Control: max-age=600</strong> — page is cached for 10 minutes</li>
   <li><strong style="color:var(--text)">Via: 1.1 varnish</strong> — GitHub uses Fastly's CDN (Varnish cache) to serve the site globally</li>
   <li><strong style="color:var(--text)">:scheme: https</strong> — confirms the request was made over HTTPS/HTTP2</li>
+  <li><strong style="color:var(--text)">strict-transport-security: max-age=31557600</strong> — forces the browser to use HTTPS for this domain for 1 year (HSTS)</li>
 </ul>
 <img src="images/devtools-headers.png" alt="Chrome DevTools headers for thien1114.github.io" style="width:100%; border-radius:4px; border:1px solid var(--border); margin:16px 0;">
+      </div>
+
+    </section>
   `, 'network');
 }
 function navigate(page, push = true) {

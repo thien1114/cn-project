@@ -503,11 +503,10 @@ function viewNetwork() {
   <li><strong style="color:var(--text)">Request URL</strong> — <code>https://thien1114.github.io/cn-project/</code> confirms HTTPS is being used</li>
   <li><strong style="color:var(--text)">Status Code 200 OK</strong> — the page was delivered successfully on a fresh request</li>
   <li><strong style="color:var(--text)">Status Code 304 Not Modified</strong> — the browser already had a cached copy, so GitHub skipped re-sending the file</li>
-  <li><strong style="color:var(--text)">Remote Address 185.199.109.153:443</strong> — port 443 confirms HTTPS; this IP matches GitHub Pages' CDN</li>
+  <li><strong style="color:var(--text)">Remote Address 2060:50c0:8001::153]:443</strong> — port 443 confirms HTTPS; this IP matches GitHub Pages' CDN</li>
   <li><strong style="color:var(--text)">Cache-Control: max-age=600</strong> — page is cached for 10 minutes</li>
   <li><strong style="color:var(--text)">Via: 1.1 varnish</strong> — GitHub uses Fastly's CDN (Varnish cache) to serve the site globally</li>
-  <li><strong style="color:var(--text)">:scheme: https</strong> — confirms the request was made over HTTPS/HTTP2</li>
-  <li><strong style="color:var(--text)">strict-transport-security: max-age=31557600</strong> — forces the browser to use HTTPS for this domain for 1 year (HSTS)</li>
+  <li><strong style="color:var(--text)">strict-transport-security: max-age=31556952</strong> — forces the browser to use HTTPS for this domain for 1 year (HSTS)</li>
 </ul>
 <img src="images/devtools-headers.png" alt="Chrome DevTools headers for thien1114.github.io" style="width:100%; border-radius:4px; border:1px solid var(--border); margin:16px 0;">
       </div>

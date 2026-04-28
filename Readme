@@ -1,0 +1,75 @@
+# T1 Fan Site — CN Project 2
+
+A fan website for T1, the League of Legends esports team, built for Computer Networking (Spring 2026).  
+This project demonstrates real-world networking concepts including DNS, HTTPS, IP addressing, performance optimization, and network monitoring.
+
+**Live Site:** https://thien1114.github.io/cn-project/
+
+---
+
+## Project Features
+
+### Security (Mandatory)
+- **HTTPS enforced** via GitHub Pages (automatic SSL/TLS certificate from Let's Encrypt). All HTTP requests are redirected to HTTPS.
+- **XSS Protection** via [DOMPurify](https://github.com/cure53/DOMPurify) — all dynamic HTML is sanitized before being injected into the DOM.
+- **Content Security Policy** meta tag restricts which scripts and resources the browser is allowed to load.
+
+### Performance Optimization
+- **Lazy loading** on all images using the `loading="lazy"` HTML attribute — images only load when they scroll into view.
+- **Minified CSS** — production stylesheet is minified to reduce file size and page load time.
+- **CDN delivery** — GitHub Pages serves assets through the Fastly CDN (via anycast routing), reducing latency for global users.
+
+### Network Monitoring
+- **Google Analytics** integrated to track page views, session duration, and user behavior over time.
+
+---
+
+## How to Run Locally
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/thien1114/cn-project.git
+   ```
+2. Open the project folder:
+   ```
+   cd cn-project
+   ```
+3. Open `index.html` in your browser directly, or use a local server:
+   ```
+   npx serve .
+   ```
+   Then visit `http://localhost:3000`
+
+> No build step required. The site is plain HTML, CSS, and JavaScript.
+
+---
+
+## File Structure
+
+```
+cn-project/
+├── index.html        # Main HTML entry point
+├── app.js            # All page logic and rendering
+├── style.css         # Stylesheet
+├── purify.min.js     # DOMPurify XSS sanitization library
+├── images/           # Screenshots and site images
+└── README.md         # This file
+```
+
+---
+
+## Deployment (GitHub Pages)
+
+1. Push changes to the `master` branch.
+2. Go to **Settings → Pages** in the GitHub repository.
+3. Set source to `master` branch, root folder.
+4. Enable **Enforce HTTPS** checkbox.
+5. GitHub Pages will automatically build and deploy the site within a few minutes.
+
+The site is live at: `https://thien1114.github.io/cn-project/`
+
+---
+
+## Team
+
+- Thien Nguyen — Developer, Computer Networking Spring 2026, Georgia State University

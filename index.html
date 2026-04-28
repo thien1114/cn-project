@@ -1,14 +1,35 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>T1 League Of Legend</title>
-        <link rel="stylesheet" href="./style.css">
-        <script src="./purify.min.js"></script>
-      </head>
-      <body>
-        <div id="app"></div>
-        <script src="./app.js"></script>
-      </body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Content Security Policy: only allow scripts from self and trusted CDNs -->
+    <meta http-equiv="Content-Security-Policy"
+      content="default-src 'self';
+               script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com;
+               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+               font-src 'self' https://fonts.gstatic.com;
+               img-src 'self' data: https://images.squarespace-cdn.com https://www.google-analytics.com;
+               connect-src 'self' https://www.google-analytics.com;">
+
+    <title>T1 League Of Legend</title>
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- DOMPurify for XSS sanitization -->
+    <script src="./purify.min.js"></script>
+
+    <!-- Google Analytics (Network Monitoring) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER123"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-PLACEHOLDER123');
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="./app.js"></script>
+  </body>
 </html>

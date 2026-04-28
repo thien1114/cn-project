@@ -194,7 +194,7 @@ function viewHome() {
         <p>At the heart of T1 is <strong>Faker</strong> — Lee Sang-hyeok — widely regarded as the greatest League of Legends player of all time. His career with T1 spans over a decade of dominance, innovation, and championship glory.</p>
       </div>
       <div class="about-image-wrap">
-        <img src="images/roster.jpg" alt="T1 Roster" class="about-img"/>
+        <img src="images/roster.jpg" alt="T1 Roster" loading="lazy" class="about-img"/>
         <div class="about-img-caption">T1 2026 Roster</div>
       </div>
     </section>
@@ -273,7 +273,7 @@ function viewPlayers() {
           <div class="roster-row reveal" data-player="${p.id}" style="transition-delay: ${i * 0.1}s">
             <div class="roster-row-number">0${i + 1}</div>
             <div class="roster-row-img-wrap">
-              <img class="roster-row-img" src="${p.image}" alt="${p.name}">
+              <img class="roster-row-img" src="${p.image}" alt="${p.name}" loading="lazy">
             </div>
             <div class="roster-row-info">
               <div class="roster-role-badge">${p.role}</div>
@@ -295,7 +295,7 @@ function viewPlayerDetail(player, push = true) {
       <button class="back-btn" id="backBtn">← Back to Players</button>
       <div class="detail-hero">
         <div class="detail-image-wrap">
-          <img class="detail-image" src="${player.image}" alt="${player.name}">
+          <img class="detail-image" src="${player.image}" alt="${player.name}" loading="lazy">
         </div>
         <div class="detail-info">
           <div class="detail-role">${player.role}</div>
@@ -456,7 +456,7 @@ function viewNetwork() {
           <li>Your browser connects to that IP and the site loads.</li>
         </ol>
         <h4>DNS Lookup — Live Example</h4>
-        <img src="images/nslookup.png" alt="DNS dig output for thien1114.github.io" style="width:100%; border-radius:4px; border: 0px solid var(--border); margin: 16px 0;">
+        <img src="images/nslookup.png" alt="DNS dig output for thien1114.github.io" loading="lazy" style="width:100%; border-radius:4px; border: 0px solid var(--border); margin: 16px 0;">
         <p>
           The answer is <b>"non-authoritative"</b> because it came from the local router's cache(<code>192.68.1.1</code>),which forwarded the query to the ISP's upstream resolver — not directly from GitHub's nameserver. Four IP addresses are returned — GitHub Pages uses anycast routing via the Fastly CDN, so the browser connects to whichever server is geographically closest, improving speed and redundancy. DNS queries travel over UDP on port 53.
           
@@ -471,7 +471,7 @@ function viewNetwork() {
           GitHub Pages serves this site through a global CDN (Content Delivery Network). The domain resolves to one of several IP addresses
           depending on your location and network. GitHub supports both <strong>IPv4</strong> and <strong>IPv6</strong>.
         </p>
-        <img src="images/addresses.png" alt="GitHub Page IP Addresses" style="width:100%; border-radius:4px; border: 0px solid var(--border); margin: 16px 0;">
+        <img src="images/addresses.png" alt="GitHub Page IP Addresses" loading="lazy" style="width:100%; border-radius:4px; border: 0px solid var(--border); margin: 16px 0;">
         <p>
           <strong>IPv4</strong> uses 32-bit addresses (e.g. <code>185.199.109.153</code>) and has been the backbone of the internet since the 1980s.
         </p>
@@ -508,7 +508,7 @@ function viewNetwork() {
   <li><strong style="color:var(--text)">Via: 1.1 varnish</strong> — GitHub uses Fastly's CDN (Varnish cache) to serve the site globally</li>
   <li><strong style="color:var(--text)">strict-transport-security: max-age=31556952</strong> — forces the browser to use HTTPS for this domain for 1 year (HSTS)</li>
 </ul>
-<img src="images/devtools-headers.png" alt="Chrome DevTools headers for thien1114.github.io" style="width:100%; border-radius:4px; border:1px solid var(--border); margin:16px 0;">
+<img src="images/devtools-headers.png" alt="Chrome DevTools headers for thien1114.github.io" loading=" style="lazy" width:100%; border-radius:4px; border:1px solid var(--border); margin:16px 0;">
       </div>
 
     </section>
